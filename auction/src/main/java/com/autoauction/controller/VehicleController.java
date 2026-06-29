@@ -22,4 +22,20 @@ public class VehicleController {
     public List<Vehicle> getAllVehicles(){
         return service.getAllVehicles();
     }
+
+    @GetMapping("/{vehicleId}")
+    public Vehicle getVehicle(@PathVariable Long vehicleId){
+        return service.getVehicle(vehicleId);
+    }
+
+    @PutMapping("/updateVehile/{id}")
+    public Vehicle updateVehicle(@PathVariable Long id, @RequestBody Vehicle vehicle){
+        return service.updateVehicle(id,vehicle);
+    }
+
+    @DeleteMapping("/{vehicleId}")
+    public void deleteVehicle(@PathVariable Long vehicleId){
+         service.deleteVehicle(vehicleId);
+    }
+
 }

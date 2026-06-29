@@ -19,4 +19,17 @@ public class VehicleService {
     public List<Vehicle> getAllVehicles(){
         return repository.findAll();
     }
+
+    public Vehicle getVehicle(Long vehicleId){ return repository.getReferenceById(vehicleId);
+    }
+    public Vehicle updateVehicle(Long vehicleId,Vehicle vehicle){
+        Vehicle vehicleExists = repository.findById(vehicleId)
+                .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+        vehicleExists.setBrand(vehicle.getBrand());
+        vehicleExists.setModel(vehicle.getModel());
+        vehicleExists.setYear(vehicle.getYear());
+        vehicleExists.setStartingPrice(vehicle.getStartingPrice());
+        return repository.save(vehicleExists);}
+
+    public void deleteVehicle(Long vehicleId){ repository.deleteById(vehicleId);}
 }
